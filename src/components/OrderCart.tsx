@@ -1,30 +1,26 @@
 import { Offcanvas, Stack } from "react-bootstrap"
 import { useOrderCart } from "../context/OrderCartContext"
 import { CartItem } from "./CartItem"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 import { formatCurrency } from "../utilities/formatCurrency";
 import axios from "axios";
-import { useState } from "react";
 import { UserProfile } from "../redux/actions/profileAction";
 import { useSelector } from "react-redux";
+
 
 
 type OrderCartProps = {
     isOpen: boolean
   };
 
-type OrderState = {
-    id: string
-    totalAmount: number 
-    orderDate: string
-};
-
 export function OrderCart({ isOpen }: OrderCartProps) {
-    const { closeCart, cartItems, getKitchenId } = useOrderCart()
+    const { closeCart, cartItems, getKitchenId, removeFromCart } = useOrderCart()
+    const navigate = useNavigate();
   
     const stateUserProfile = useSelector((state: any) => state.userProfile) as UserProfile;
     
     const handlePlaceOrder = async (token: string) => {
+        
        
         const orderData = {
 
@@ -49,37 +45,39 @@ export function OrderCart({ isOpen }: OrderCartProps) {
                 orderData,
                 { headers: customHeaders }
             );
-            console.log(orderData)
-            // console.log('Successful registered. Response:', response.data);
+            console.log('New Order is successfully created! Response:', response.data);
+
             if (response.status === 200) {
-                console.log(" New Order is successfully created!")
+                // Clear the cart after placing the order
+                clearCart();
+
+                // Navigate to the checkout route
+                navigate('/checkOut');
             }
             else {
                 console.log("Order is failed to create.")
             }
-        //   setErrors(null); // Clear any previous errors if login succeeds
         } catch (err) {
-            console.error('Submision is failed:');
+            console.error('Submision is failed:', err);
         }
     };
 
-    // const validateForm = (): boolean => {
-    //     throw new Error("Function not implemented.");
-    // }
+    
+
+    const clearCart = () => {
+        // Remove all items from the cart
+        cartItems.forEach(item => removeFromCart(item.id));
+      };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // throw new Error("Function not implemented.");
-
+        handlePlaceOrder(stateUserProfile.webtoken);
+        
         console.log('You Placed an Order.');
-        
-        // if (validateForm()) {
-            handlePlaceOrder(stateUserProfile.webtoken);
-            // console.log('Order data:', orderData);
-            // }
 
-        
     };
+
+
 
     return (
         <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -103,8 +101,12 @@ export function OrderCart({ isOpen }: OrderCartProps) {
                     </div>
                     <div className="btn btn-primary mb-2">
                         <form action="" onSubmit={handleSubmit}>
-                            <button className="btn" type="submit" id="order">Place Order</button> 
-                            <Link to="/checkOut" className="btn btn-defual border w-100 bg-secondary">Place Order</Link>  
+                            <button 
+                                className="btn" 
+                                type="submit" 
+                                id="order">
+                                    Place Order
+                                </button> 
                         </form>
                     </div>
                 </Stack>
@@ -112,5 +114,7 @@ export function OrderCart({ isOpen }: OrderCartProps) {
         </Offcanvas>
     )
 }
+
+
 
 
