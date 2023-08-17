@@ -62,7 +62,7 @@ export const NewKitchenForm: React.FC = () => {
         };
 
         const response = await axios.post(
-            "http://localhost:5000/kitchen",
+            "https://still-tundra-93495-217ee8867b82.herokuapp.com/kitchen",
             formData,
             { headers: customHeaders }
         );

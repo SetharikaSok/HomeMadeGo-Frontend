@@ -52,7 +52,7 @@ export const Register: React.FC = () => {
       const handleRegister = async () => {
         try {
           const response = await axios.post(
-            "http://localhost:5000/auth",
+            "https://still-tundra-93495-217ee8867b82.herokuapp.com/auth",
             formData
           );
           console.log(formData)
@@ -185,28 +185,7 @@ export const Register: React.FC = () => {
                         />
                         {errors.password && <span className="text-danger">{errors.password}</span>}
                     </div>
-                    {/* <div className="mb-3">
-                      <label>
-                        Register as:
-                        <select 
-                          name="usertype"
-                          value={formData.usertype}
-                          onChange={handleSelect}>
-                          <option value="User">User</option>
-                          <option value="Chef">Chef</option>
-                        </select>
-                      </label>
-                    </div> */}
-                    {/* <div className="form-check mb-3">
-                        <label className="form-check-label">
-                            <input  
-                                className="form-check-input" 
-                                type="checkbox"
-                                name="remember">
-                                    Remember me
-                            </input>
-                        </label>
-                    </div> */}
+                    
                     <button type="submit" className="btn btn-primary">
                         Register
                     </button>

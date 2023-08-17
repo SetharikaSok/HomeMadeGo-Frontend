@@ -50,7 +50,7 @@ export const NewItemForm: React.FC = () => {
                 };
             
                 const response = await axios.post(
-                    "http://localhost:5000/menuItem",
+                    "https://still-tundra-93495-217ee8867b82.herokuapp.com/menuItem",
                     formData,
                     { headers: customHeaders }
                 );

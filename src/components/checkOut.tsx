@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 export function CheckOut() {
     return (
         <>
-            <div className="conatiner col-12 my-5 br-2 rounded ">
+            <h1>Thank you for your order.</h1>
+            <h4></h4>
+
+            {/* <div className="conatiner col-12 my-5 br-2 rounded ">
                 <div className="row">
                     <div className="col-8">
                         <h4>Billing Address</h4>
@@ -49,12 +52,12 @@ export function CheckOut() {
                                         id="zip"
                                     />
                                 </div>
-                                {/* <hr> */}
-                                {/* <div className="form-check">
+                              
+                                <div className="form-check">
                                     <input className="form-check-input" type="checkbox"/>
                                     <label className="form-check-label">Shippping address is the same as my billing address</label>
-                                </div> */}
-                                {/* </hr> */}
+                                </div>
+                                
                                 <h4>Payment</h4>
                                 <div className="formcheck">
                                     <input className="form-check-input" type="radio"/>
@@ -83,9 +86,9 @@ export function CheckOut() {
                                         <input className="form-control" id="cvv" type="text"/>
                                     </div>
                                 </div>
-                                {/* <hr> */}
+                                
                                 <button type="submit" className="btn btn-primary btn-block mb-5">Continue To Checkout</button>
-                                {/* </hr> */}
+                                
                             </div>
                         </form>
                     </div>
@@ -133,7 +136,7 @@ export function CheckOut() {
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 };

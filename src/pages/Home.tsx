@@ -11,7 +11,7 @@ export function Home() {
     
     React.useEffect(() => {
         axios
-          .get("http://localhost:5000/kitchen")
+          .get("https://still-tundra-93495-217ee8867b82.herokuapp.com/kitchen")
           .then((response) => {
             setFormData(response.data);
             console.log("Call All kitchen", response.data)

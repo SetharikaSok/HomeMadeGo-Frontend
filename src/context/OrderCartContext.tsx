@@ -1,25 +1,27 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { OrderCart } from "../components/OrderCart";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { MenuItemState } from "../components/NewItemForm";
 
 type OrderCartProviderProps = {
     children: ReactNode
 }
 
-type CartItem = {
+export type CartItemProp = {
     id: string
     quantity: number
+    price: number
 }
 
 type OrderCartContext = {
     openCart: () => void
     closeCart: () => void
     getItemQuantity: (id: string) => number
-    increaseCartQuantity: (id: string) => void
+    increaseCartQuantity: (cartItem: MenuItemState) => void
     decreaseCartQuantity: (id: string) => void
     removeFromCart: (id: string) => void
     cartQuantity: number
-    cartItems: CartItem[]
+    cartItems: CartItemProp[]
 }
 
 const OrderCartContext = createContext({} as OrderCartContext)
@@ -31,7 +33,7 @@ export function useOrderCart() {
 export function OrderCartProvider({ children}: OrderCartProviderProps) {
     const [isOpen, setIsOpen] = useState(false)
 
-    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    const [cartItems, setCartItems] = useLocalStorage<CartItemProp[]>(
         "order-cart",
         []
     )
@@ -49,14 +51,15 @@ export function OrderCartProvider({ children}: OrderCartProviderProps) {
         return cartItems.find(item => item.id === id)?.quantity || 0
     }
 
-    function increaseCartQuantity(id: string) {
+    function increaseCartQuantity(cartItem: MenuItemState) {
         setCartItems(currentItems => {
-            if (currentItems.find(item => item.id === id) == null) {
-                return [...currentItems, {id, quantity: 1 }]
+
+            if (currentItems.find(item => item.id === cartItem.id) == null) {
+                return [...currentItems, {...cartItem, quantity: 1 }]
             } else {
                 return currentItems.map(item => {
-                    if (item.id === id) {
-                        return {...item, quantity: item.quantity + 1}
+                    if (item.id === cartItem.id) {
+                        return {...cartItem, quantity: item.quantity + 1, price: item.price}
                     } else {
                         return item
                     }

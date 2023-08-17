@@ -29,7 +29,7 @@ export const LoginForm: React.FC = () => {
     const handleLogin = async () => {
         try {
           const response = await axios.post<UserProfile>(
-            "http://localhost:5000/auth/login",
+            "https://still-tundra-93495-217ee8867b82.herokuapp.com/auth/login",
             formData
           );
           
@@ -143,28 +143,11 @@ export const LoginForm: React.FC = () => {
                         />
                         {errors.password && <span className="text-danger">{errors.password}</span>}
                     </div>
-                    {/* <div className="mb-3">
-                      <label>
-                        Log In as:
-                        <select 
-                          name="usertype"
-                          value={formData.usertype}
-                          onChange={handleSelect}>
-                          <option value="User">User</option>
-                          <option value="Chef">Chef</option>
-                        </select>
-                      </label>
-                    </div> */}
-                    {/* <div className="form-check mb-3">
-                        <label className="form-check-label">
-                            <input  
-                                className="form-check-input" 
-                                type="checkbox"
-                                name="remember">
-                                    Remember me
-                            </input>
-                        </label>
-                    </div> */}
+
+                    <div className="form-check mb-3">
+                        <label className="form-check-label">Remember me</label>
+                        <input className="form-check-input" type="checkbox"/>
+                    </div>
                     <button type="submit" className="btn btn-primary mb-2">
                         Log In
                     </button>
