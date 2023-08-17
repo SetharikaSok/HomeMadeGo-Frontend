@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link} from "react-router-dom";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { UserProfile, setUserProfile } from "../redux/actions/profileAction";
 
@@ -44,10 +43,6 @@ export const LoginForm: React.FC = () => {
             navigate('/');
           }
 
-          // console.log('Login successful. Response:', response.data);
-          
-          // Handle successful login (e.g., redirect to dashboard)
-        //   setErrors(null); // Clear any previous errors if login succeeds
         } catch (err) {
             console.error('Login failed:', err);
             alert("Please enter a correct email or password.")
@@ -59,54 +54,46 @@ export const LoginForm: React.FC = () => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     };
-
-    // const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //   const { name, value } = e.target;
-    //   setFormData({ ...formData, [name]: value });
-      
-    // };
     
-      const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (validateForm()) {
-          // Handle form submission (e.g., API call, save data, etc.)
-          console.log('Form data:', formData);
-          handleLogin()
-          // Clear the form after successful submission
-          // setFormData({ email: '', password: '' });
-        }
-      };
-    
-      const validateForm = (): boolean => {
-        let isValid = true;
-        const { email, password } = formData;
-        const newErrors: FormState = { email: '', password: ''};
-    
-        if (!email.trim()) {
-          newErrors.email = 'Email is required';
-          isValid = false;
-        } else if (!isValidEmail(email)) {
-          newErrors.email = 'Invalid email address';
-          isValid = false;
-        }
-    
-        if (!password.trim()) {
-          newErrors.password = 'Password is required';
-          isValid = false;
-        } else if (password.length < 6) {
-          newErrors.password = 'Password must be at least 6 characters long';
-          isValid = false;
-        }
-    
-        setErrors(newErrors);
-        return isValid;
-      };
-    
-      const isValidEmail = (email: string): boolean => {
-        // Basic email validation regex
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-      };
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (validateForm()) {
+        // Handle form submission (e.g., API call, save data, etc.)
+        console.log('Form data:', formData);
+        handleLogin()
+      }
+    };
+  
+    const validateForm = (): boolean => {
+      let isValid = true;
+      const { email, password } = formData;
+      const newErrors: FormState = { email: '', password: ''};
+  
+      if (!email.trim()) {
+        newErrors.email = 'Email is required';
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        newErrors.email = 'Invalid email address';
+        isValid = false;
+      }
+  
+      if (!password.trim()) {
+        newErrors.password = 'Password is required';
+        isValid = false;
+      } else if (password.length < 6) {
+        newErrors.password = 'Password must be at least 6 characters long';
+        isValid = false;
+      }
+  
+      setErrors(newErrors);
+      return isValid;
+    };
+  
+    const isValidEmail = (email: string): boolean => {
+      // Basic email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
 
     return (
         <div className="d-flex justify-content-center align-items-center bg-primary vh-100">  

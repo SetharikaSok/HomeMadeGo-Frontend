@@ -14,16 +14,15 @@ type OrderCartProps = {
   };
 
 export function OrderCart({ isOpen }: OrderCartProps) {
+
     const { closeCart, cartItems, getKitchenId, removeFromCart } = useOrderCart()
-    const navigate = useNavigate();
-  
+
     const stateUserProfile = useSelector((state: any) => state.userProfile) as UserProfile;
+
+    const navigate = useNavigate();
     
     const handlePlaceOrder = async (token: string) => {
-        
-       
         const orderData = {
-
             totalAmount: cartItems.reduce((total, cartItems) => {
                 return total + cartItems.price * cartItems.quantity
             }, 0),
@@ -34,8 +33,8 @@ export function OrderCart({ isOpen }: OrderCartProps) {
             }))
           };
         console.log('Order data:', orderData);
-        try {
 
+        try {
             const customHeaders = {
                 'token': token,
             };
@@ -59,10 +58,9 @@ export function OrderCart({ isOpen }: OrderCartProps) {
             }
         } catch (err) {
             console.error('Submision is failed:', err);
+            alert("Please log in to place an order.")
         }
-    };
-
-    
+    };   
 
     const clearCart = () => {
         // Remove all items from the cart

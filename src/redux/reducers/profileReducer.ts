@@ -1,4 +1,4 @@
-import { SET_USER_PROFILE, UserProfile } from "../actions/profileAction";
+import { CLEAR_USER_PROFILE, SET_USER_PROFILE, UserProfile } from "../actions/profileAction";
 
 
 const initialUserProfile: UserProfile = {
@@ -13,6 +13,8 @@ export const profileReducer = (state = initialUserProfile, action: any) => {
     switch(action.type) {
         case SET_USER_PROFILE:
             return { ...state, ...action.payload};
+        case CLEAR_USER_PROFILE:
+            return {};
         default:
             return state;
     }
