@@ -67,14 +67,14 @@ export const NewKitchenForm: React.FC = () => {
             { headers: customHeaders }
         );
         console.log(formData)
-        // console.log('Successful registered. Response:', response.data);
+        
         if (response.status === 200) {
             console.log(" New kitchen is successfully created!")
         }
         else {
             console.log("Kitchen is failed to create.")
         }
-        //   setErrors(null); // Clear any previous errors if login succeeds
+        
         } catch (err) {
             console.error('Submision is failed:', errors);
         }
@@ -96,8 +96,8 @@ export const NewKitchenForm: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        
         if (validateForm()) {
-        // Handle form submission (e.g., API call, save data, etc.)
         handleNewKitchen(stateUserProfile.webtoken);
         console.log('Form data:', formData);
         // Clear the form after successful submission

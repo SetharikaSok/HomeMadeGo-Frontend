@@ -12,6 +12,7 @@ export type MenuItemState = {
     category: string
     imgUrl: string
     file: File | null
+
 }
 
 export const NewItemForm: React.FC = () => {
@@ -56,14 +57,13 @@ export const NewItemForm: React.FC = () => {
                 );
                 console.log(formData)
 
-                // console.log('Successful registered. Response:', response.data);
                 if (response.status === 200) {
                     console.log(" New item is successfully created!")
                 }
                 else {
                     console.log("Item is failed to create.")
                 }
-            //   setErrors(null); // Clear any previous errors if login succeeds
+
             } catch (err) {
                 console.error('Submision is failed:', errors);
             }
@@ -151,7 +151,6 @@ export const NewItemForm: React.FC = () => {
     
     return (
         <div className="mb-3">
-            {/* <Link to="/kitchen" className=" w-50 text-black-50">Back to kitchen</Link> */}
             <Link to="/myaccount" className=" w-50 text-black-50">Back to My Account</Link>
             <div className="bg-white p-3 rounded w-50">
                 <form action="" onSubmit={handleSubmit}>

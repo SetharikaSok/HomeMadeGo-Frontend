@@ -21,7 +21,9 @@ type OrderCartContext = {
     decreaseCartQuantity: (id: string) => void
     removeFromCart: (id: string) => void
     cartQuantity: number
-    cartItems: CartItemProp[]
+    cartItems: CartItemProp[],
+    setKitchenId: (id: string) => void,
+    getKitchenId: string
 }
 
 const OrderCartContext = createContext({} as OrderCartContext)
@@ -42,6 +44,13 @@ export function OrderCartProvider({ children}: OrderCartProviderProps) {
         (quantity, item) => item.quantity + quantity,
         0
     )
+
+    const [kitchenIdStr, setKitchenIdStr] = useLocalStorage<string>(
+        "kitchenIdaaaa",
+        ""
+    )
+
+    const getKitchenId = kitchenIdStr
 
     const openCart = () => setIsOpen(true)
 
@@ -90,6 +99,16 @@ export function OrderCartProvider({ children}: OrderCartProviderProps) {
         })
     }
 
+    function setKitchenId(id: string) {
+        setKitchenIdStr(id)
+        console.log("Hook  setkitchenid" + id)
+    }
+
+    // function getKitchenId() {
+    //     return kitchenIdStr
+    // }
+
+
     return (
         <OrderCartContext.Provider
         value={{ 
@@ -100,7 +119,9 @@ export function OrderCartProvider({ children}: OrderCartProviderProps) {
             openCart,
             closeCart,
             cartItems,
-            cartQuantity
+            cartQuantity,
+            setKitchenId,
+            getKitchenId
         }}
         >
             {children}

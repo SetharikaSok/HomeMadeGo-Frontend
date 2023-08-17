@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import allReducers from './redux/reducers/indexReducer';
 import { Provider } from 'react-redux';
-
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Use local storage
@@ -23,11 +22,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// const store = createStore(
-//   allReducers,
-//   (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&  (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-//   );
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
