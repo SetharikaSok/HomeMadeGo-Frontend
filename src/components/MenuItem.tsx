@@ -23,7 +23,7 @@ export function MenuItem(props:MenuItemState) {
             </Card.Title>
             <div className="mt-auto">
                 {quantity === 0 ? (
-                    <Button className="w-100" onClick={() => increaseCartQuantity(props)}>+ Order Now</Button>
+                    <Button className="w-100 btn-info" onClick={() => increaseCartQuantity(props)}>+ Order Now</Button>
                 ) : (
                     <div 
                         className="d-flex align-items-center justy-content flex-column" 
@@ -33,11 +33,11 @@ export function MenuItem(props:MenuItemState) {
                             className="d-flex align-items-center justify-content-center" 
                             style={{ gap: "0.5rem"}}
                         >
-                            <Button onClick={() => decreaseCartQuantity(props.id)}>-</Button>
+                            <Button className="btn-info" onClick={() => decreaseCartQuantity(props.id)}>-</Button>
                             <div>
                                 <span className="fs-3"> {quantity} </span> in cart
                             </div>
-                            <Button onClick={() => increaseCartQuantity(props)}>+</Button>
+                            <Button className="btn-info" onClick={() => increaseCartQuantity(props)}>+</Button>
                         </div>
                         <Button onClick={() => removeFromCart(props.id)}
                         variant="danger" 

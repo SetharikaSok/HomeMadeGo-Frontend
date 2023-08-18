@@ -30,16 +30,16 @@ export function MyAccount() {
 
     return (
         <>
-            <h1>My Account</h1>
+            <h1 className="mb-4">Account</h1>
             <div>
-                <Link to="/newKitchenForm" className="btn btn-defual border w-30 bg-secondary mb-3">
+                <Link to="/newKitchenForm" className="btn btn-defual border w-30 bg-white mb-3">
                         Create Kitchen
                 </Link>
             </div>
             <div>
-                <Link to="/newItemForm" className="btn btn-defual border w-30 bg-secondary mb-3">Add Menu</Link>
+                <Link to="/newItemForm" className="btn btn-defual border w-30 bg-white mb-3">Add Menu</Link>
             </div>
-            <div className="btn btn-defual border w-30 bg-primary">
+            <div className="btn btn-defual border w-30 bg-danger">
                 <button 
                     className="btn" 
                     type="submit" 

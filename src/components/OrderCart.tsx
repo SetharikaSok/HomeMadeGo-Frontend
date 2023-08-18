@@ -97,7 +97,7 @@ export function OrderCart({ isOpen }: OrderCartProps) {
                             }, 0)
                         )}
                     </div>
-                    <div className="btn btn-primary mb-2">
+                    <div className="btn btn-warning mb-2">
                         <form action="" onSubmit={handleSubmit}>
                             <button 
                                 className="btn" 

@@ -15,7 +15,7 @@ export function KitchenList({ id, name, address1, address2, city, state, zipcode
                 <Card.Title className="d-flex justify-content-space-between align-items-baseline mb-4">
                     <span className="fs-2">{name}</span>
                 </Card.Title>
-                <Card.Footer className="d-flex justify-content-space-between align-items-baseline mb-4">
+                <Card.Footer className="d-flex justify-content-space-between align-items-baseline mb-4 text-secondary">
                     <span className="fs-6">{address1}, {address2}, {city}, {state}, {zipcode}</span>
                 </Card.Footer>
             </Card.Body>

@@ -116,8 +116,8 @@ export const Register: React.FC = () => {
 
 
     return (
-        <div className="d-flex justify-content-center align-items-center bg-primary vh-100">  
-            <div className="bg-white p-3 rounded w-25">
+        <div className="d-flex justify-content-center align-items-center bg-light vh-100">  
+            <div className="bg-white p-3 border rounded w-25">
                 <form action="" onSubmit={handleSubmit}>
                 <div className="mb-3">
                         <label htmlFor="fname" className="form-label"><strong>Fist Name:</strong></label>
@@ -186,11 +186,11 @@ export const Register: React.FC = () => {
                         {errors.password && <span className="text-danger">{errors.password}</span>}
                     </div>
                     
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-warning">
                         Register
                     </button>
                     <p>Already a users?</p>
-                    <Link to="/login" className="btn btn-defual border w-100 bg-light">
+                    <Link to="/login" className="btn btn-defual border w-100 bg-success">
                         Login
                     </Link>
                 </form>
