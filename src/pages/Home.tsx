@@ -30,6 +30,7 @@ export function Home() {
                 </Col>
             ))}
         </Row>
+        <h4 className="d-flex justify-content-center"> If your're craving for some quality home made food that are feel just like home, we are here to serve you.</h4>
     </>
     )
 };

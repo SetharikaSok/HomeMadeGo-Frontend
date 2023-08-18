@@ -104,11 +104,6 @@ export function OrderCartProvider({ children}: OrderCartProviderProps) {
         console.log("Hook  setkitchenid" + id)
     }
 
-    // function getKitchenId() {
-    //     return kitchenIdStr
-    // }
-
-
     return (
         <OrderCartContext.Provider
         value={{ 

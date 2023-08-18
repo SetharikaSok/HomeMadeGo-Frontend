@@ -20,6 +20,7 @@ export function OrderCart({ isOpen }: OrderCartProps) {
     const stateUserProfile = useSelector((state: any) => state.userProfile) as UserProfile;
 
     const navigate = useNavigate();
+
     
     const handlePlaceOrder = async (token: string) => {
         const orderData = {
@@ -44,14 +45,19 @@ export function OrderCart({ isOpen }: OrderCartProps) {
                 orderData,
                 { headers: customHeaders }
             );
-            console.log('New Order is successfully created! Response:', response.data);
+            // console.log('New Order is successfully created! Response:', response.data);
 
             if (response.status === 200) {
                 // Clear the cart after placing the order
                 clearCart();
 
+            
+                console.log(response.data)
+                const orderIdStr = response.data["order"]["id"]
+                const orderDateStr = response.data["order"]["orderDate"]
+                const totalAmountNum = response.data["order"]["totalAmount"]
                 // Navigate to the checkout route
-                navigate('/checkOut');
+                navigate('/checkOut', {state:{kitchenName: "Kitchen A", orderId: orderIdStr, orderDate: orderDateStr, totalAmount: totalAmountNum }});
             }
             else {
                 console.log("Order is failed to create.")

@@ -25,7 +25,7 @@ const Kitchen: React.FC = () => {
             setFormData(response.data);
             console.log("Call All Menuitem", response.data)
           });
-      }, [kitchenIdStr]);
+      }, []);
     return (
         <>
             <h1>Kitchen</h1>
