@@ -107,7 +107,7 @@ export const NewKitchenForm: React.FC = () => {
 
     const validateForm = (): boolean => {
         let isValid = true;
-        const { id, name, address1, address2, city, state, country, zipcode, contact, cuisineType, imgUrl, file} = formData;
+        const {name, address1, address2, city, state, country, zipcode, contact, cuisineType, imgUrl} = formData;
         const newErrors: KitchenState = {
             id: '',
             name: '',
@@ -129,7 +129,32 @@ export const NewKitchenForm: React.FC = () => {
         }
     
         if (!address1.trim()) {
-            newErrors.address1 = 'Address is required';
+            newErrors.address1 = 'Address1 is required';
+            isValid = false;
+        }
+
+        if (!address2.trim()) {
+            newErrors.address2 = 'Address2 is required';
+            isValid = false;
+        }
+
+        if (!city.trim()) {
+            newErrors.city = 'City is required';
+            isValid = false;
+        }
+
+        if (!state.trim()) {
+            newErrors.state = 'State is required';
+            isValid = false;
+        }
+
+        if (!country.trim()) {
+            newErrors.country = 'Country is required';
+            isValid = false;
+        }
+
+        if (!zipcode.trim()) {
+            newErrors.zipcode = 'zipcode is required';
             isValid = false;
         }
     
@@ -143,6 +168,11 @@ export const NewKitchenForm: React.FC = () => {
         
         if (!cuisineType.trim()) {
             newErrors.cuisineType = 'Cuisine Type is required';
+            isValid = false;
+        }
+
+        if (!imgUrl.trim()) {
+            newErrors.imgUrl = 'ImgUrl is required';
             isValid = false;
         }
 
