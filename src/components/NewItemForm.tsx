@@ -59,6 +59,7 @@ export const NewItemForm: React.FC = () => {
 
                 if (response.status === 200) {
                     console.log(" New item is successfully created!")
+                    alert("New item is created!")
                 }
                 else {
                     console.log("Item is failed to create.")
@@ -96,6 +97,7 @@ export const NewItemForm: React.FC = () => {
             // Clear the form after successful submission
             // setFormData({ id: '',name: '',price: ,description: '',category: '',imgUrl: '', });
             }
+            
         };
 
 

@@ -70,6 +70,7 @@ export const NewKitchenForm: React.FC = () => {
         
         if (response.status === 200) {
             console.log(" New kitchen is successfully created!")
+            alert("New kitchen is successfully created!")
         }
         else {
             console.log("Kitchen is failed to create.")
@@ -95,6 +96,7 @@ export const NewKitchenForm: React.FC = () => {
     };
 
     const handleSubmit = (e: React.FormEvent) => {
+        console.log('Form data:', formData);
         e.preventDefault();
         
         if (validateForm()) {
@@ -103,9 +105,11 @@ export const NewKitchenForm: React.FC = () => {
         // Clear the form after successful submission
         // setFormData({ id: '',name: '',address: '',contact: '',cuisineType: '',});
         }
+
     };
 
     const validateForm = (): boolean => {
+        
         let isValid = true;
         const {name, address1, address2, city, state, country, zipcode, contact, cuisineType, imgUrl} = formData;
         const newErrors: KitchenState = {
@@ -122,6 +126,7 @@ export const NewKitchenForm: React.FC = () => {
             imgUrl: '',
             file: null
         };
+        // console.log('Error:', newErrors);
 
         if (!name.trim()) {
             newErrors.name = 'Name is required';
@@ -171,14 +176,15 @@ export const NewKitchenForm: React.FC = () => {
             isValid = false;
         }
 
-        if (!imgUrl.trim()) {
-            newErrors.imgUrl = 'ImgUrl is required';
-            isValid = false;
-        }
+        // if (!imgUrl.trim()) {
+        //     newErrors.imgUrl = 'ImgUrl is required';
+        //     isValid = false;
+        // }
 
         if (!formData.file) {
             alert("Please select an image file!");
         }
+        console.log("New error"+newErrors)
     
         setErrors(newErrors);
         return isValid;
@@ -229,7 +235,7 @@ export const NewKitchenForm: React.FC = () => {
                         value={formData.address2}
                         onChange={handleChange}
                     />
-                    {/* {errors.address1 && <span className="text-danger">{errors.address1}</span>} */}
+                    {errors.address2 && <span className="text-danger">{errors.address2}</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="city" className="form-label"><strong>City:</strong></label>
@@ -242,7 +248,7 @@ export const NewKitchenForm: React.FC = () => {
                         value={formData.city}
                         onChange={handleChange}
                     />
-                    {/* {errors.address1 && <span className="text-danger">{errors.address1}</span>} */}
+                    {errors.city && <span className="text-danger">{errors.city}</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="state" className="form-label"><strong>State:</strong></label>
@@ -255,7 +261,7 @@ export const NewKitchenForm: React.FC = () => {
                         value={formData.state}
                         onChange={handleChange}
                     />
-                    {/* {errors.address1 && <span className="text-danger">{errors.address1}</span>} */}
+                    {errors.state && <span className="text-danger">{errors.state}</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="country" className="form-label"><strong>Country:</strong></label>
@@ -268,7 +274,7 @@ export const NewKitchenForm: React.FC = () => {
                         value={formData.country}
                         onChange={handleChange}
                     />
-                    {/* {errors.address1 && <span className="text-danger">{errors.address1}</span>} */}
+                    {errors.country && <span className="text-danger">{errors.country}</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="zipcode" className="form-label"><strong>Zip Code:</strong></label>
@@ -281,7 +287,7 @@ export const NewKitchenForm: React.FC = () => {
                         value={formData.zipcode}
                         onChange={handleChange}
                     />
-                    {/* {errors.address1 && <span className="text-danger">{errors.address1}</span>} */}
+                    {errors.zipcode && <span className="text-danger">{errors.zipcode}</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="contact" className="form-label"><strong>Contact:</strong></label>

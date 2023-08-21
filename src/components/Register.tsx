@@ -59,6 +59,7 @@ export const Register: React.FC = () => {
           // console.log('Successful registered. Response:', response.data);
           if (response.status === 200) {
             console.log("Register is success!")
+            alert("Succesfully Register!")
           }
           else {
             console.log("Register is failed")
